@@ -1,3 +1,11 @@
+-- UNIVERSIDADE FEDERAL DO PARÁ
+-- INSTITUTO DE CIÊNCIAS EXATAS E NATURAIS
+-- FACULDADE DE COMPUTAÇÃO
+-- CURSO: CIÊNCIA DA COMPUTAÇÃO
+-- DISCIPLINA: BANCO DE DADOS II
+-- PROFESSORA: FABÍOLA P. OLIVEIRA ARAÚJO
+-- PERÍODO: 2017.4
+
 /*
 a) Faça uma seleção que mostre sobrenome (last_name) dos empregados que possuem a
 terceira letra sendo “a”. Nesta seleção mostre também o nome do departamento
@@ -57,3 +65,27 @@ para o cargo que ele exerce. Faça com que o salário acrescido seja mostrado co
 select employee_id, last_name, salary, salary + min(salary) as Novo_Salario
 from employees
 group by employee_id, last_name, salary;
+
+/*
+h) Faça uma consulta que mostre o primeiro nome (first_name) e o último nome (last_name)
+de todos os empregados que foram admitidos depois do ano de 1990.
+*/
+select first_name, last_name, hire_date
+from employees
+where hire_date like '%9_' or hire_date like '%0_';
+
+/*
+i) Construa uma query que mostre o primeiro nome do empregado (first_name) e do seu
+gerente.
+*/
+select emp.first_name, man.first_name
+from employees emp, employees man
+where emp.manager_id = man.employee_id;
+
+/*
+j) Faça uma consulta que mostre o nome do departamento (department_name), o nome do
+país em que ele se encontra (country_name) e o nome da região (region_name). 
+*/
+select department_name, country_name, region_name
+from departments dep, countries cou, regions reg, locations loc
+where dep.location_id = loc.location_id and loc.country_id = cou.country_id and cou.region_id = reg.region_id;
