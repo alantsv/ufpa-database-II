@@ -27,13 +27,11 @@ where codprof = professor_codprof and turma_anosem != 0417;
 
 -- d. Listar o nome dos departamentos que tem pelo menos 03 turmas de qualquer
 -- disciplina.
-select nomedepto
-from departamento
-where (
-	select count(*)
-	from disciplina, turma
-	where coddepto = departamento_coddepto and numdisc = disciplina_numdisc
-) >= 3;
+select nomedepto, count(siglatur)
+from departamento, disciplina, turma
+where coddepto = departamento_coddepto and numdisc = disciplina_numdisc and departamento_coddepto = disc_depto_coddepto
+group by nomedepto
+having count(*) >= 3;
 
 -- e. Selecionar o nome do professor, nome do departamento e o nome da disciplina que ele
 -- leciona.
