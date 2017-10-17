@@ -70,6 +70,12 @@ select avg(qtde_alunos)
 from turma, disciplina
 where numdisc = disciplina_numdisc and departamento_coddepto = disc_depto_coddepto and nomedisc like 'Pratica de Laboratorio' or nomedisc like 'Biologia';
 
+select nomedisc, avg(qtde_alunos)
+from turma, disciplina
+where numdisc = disciplina_numdisc and departamento_coddepto = disc_depto_coddepto 
+and (nomedisc like 'Pratica de Laboratorio' or nomedisc like 'Biologia')
+group by nomedisc;
+
 -- k. Mostrar o nome de todos os professores que possuem a letra a em qualquer posição do
 -- nome.
 select nomeprof
